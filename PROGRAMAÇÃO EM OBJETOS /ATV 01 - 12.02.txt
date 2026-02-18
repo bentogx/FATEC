@@ -1,0 +1,34 @@
+1. O que é programação orientada a objetos?
+
+A programação orientada a objetos é uma forma de programar que organiza o codigo em trono de um objeto, como se fosse o mundo real. 
+Pensamos no problema como se fosse um objeto de fato, que contem caracteristicas (atributos) e ações (metodos). Ex: Um automovel que podemos acelerar ou frear, mudar cores e modelos. 
+
+
+2. Quais as vantagens em usar POO em vez da programação estruturada?
+
+Na POO, o codigo é mais organizado e e mais facil de manter, pois podemos criar sistemas maiores se dividi-los em partes. E assim se algo "quebrar" voce sabe exatamente aonde esta o erro. 
+Podemos reutilizar o codigo, ou parte dele, em outros lugares. A Proteção é maior, pois os dados ficam dentro do objeto assim evitando que funçoes externas os alterem por acidente. 
+Na programação estruturada, o código segue uma sequência de passos, o que funciona bem em programas menores, mas pode se tornar confuso e difícil de manter conforme o sistema cresce.
+
+3. O que é um objeto na POO?
+Um objeto é a instância de uma classe, ou seja, a representação concreta de um modelo definido. Se a classe for como o projeto de uma casa, o objeto é a casa construída a partir desse projeto. 
+Ele possui atributos (como cor, tamanho e quantidade de cômodos) e métodos (como abrir portas, acender luzes e fechar janelas). 
+Mesmo que dois objetos venham da mesma classe, cada um pode ter características próprias.
+
+4. Quais são os 4 pilares da POO?
+
+Abstração:
+Consiste em mostrar apenas as informações essenciais de um objeto e esconder os detalhes mais complexos da sua implementação. 
+Assim, o usuário interage apenas com o necessário, sem precisar entender todo o funcionamento interno.
+
+Encapsulamento:
+É o mecanismo que protege os dados do objeto, permitindo que eles sejam acessados apenas por meio de métodos definidos. 
+Isso garante mais controle e segurança nas modificações das informações.
+
+Herança:
+Permite que uma classe herde características e comportamentos de outra. 
+Por exemplo, a classe “Animal” pode transmitir propriedades para a classe “Cachorro”, que além dessas características, terá suas próprias particularidades.
+
+Polimorfismo:
+É a capacidade de um mesmo método apresentar comportamentos diferentes dependendo do objeto que o utiliza. 
+Ou seja, a mesma ação pode ter execuções distintas conforme o contexto.
