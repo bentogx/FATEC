@@ -1,0 +1,23 @@
+#include <stdio.h>
+int exponenciacaoRecu(int x, int y){
+    if(y==0){
+        return 1;
+    }else{
+        return x*exponenciacaoRecu(x, y-1);
+    }
+}
+int fiboRecu(int x){ 
+    if(x>1){
+        return fiboRecur(x-1) + fiboRecu(x-2);
+    }else{
+        if(x==0){return 0;}
+        else{return 1;}
+    }
+}
+int main()
+{
+    printf("Resultado 2 elevado a 4: %i\n", exponenciacaoRecu(2,4));
+    printf("Resultado da 13 posicao: %i", fiboRecu(13));
+
+    return 0;
+}
