@@ -1,0 +1,80 @@
+1. O que é um Tipo Abstrato de Dados (TAD)?
+Um TAD é um modelo matemático que define um conjunto de dados e as operações que podem ser realizadas sobre eles. A característica fundamental de um TAD é a ocultação da implementação (ou encapsulamento).
+
+Isso significa que o usuário do TAD conhece a interface (o que o tipo faz), mas não precisa conhecer os detalhes internos (como os dados são armazenados ou como os algoritmos funcionam).
+
+2. Quais as vantagens de se programar com TADs?
+O uso de TADs traz benefícios estruturais ao desenvolvimento de software:
+
+Encapsulamento: Protege os dados internos contra acessos indevidos, garantindo que o estado do objeto só mude através de funções autorizadas.
+
+Modularidade: Permite que o código seja desenvolvido e testado em partes isoladas, facilitando a organização de grandes projetos.
+
+Flexibilidade e Manutenção: É possível alterar toda a lógica interna de um TAD (por exemplo, mudar uma busca sequencial por uma busca binária) sem que os programas que utilizam esse TAD precisem ser modificados.
+
+Portabilidade: Facilita a reutilização do componente em diferentes sistemas.
+
+3 e 4. Implementação de TAD Conta Bancária
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Definição da estrutura do TAD
+typedef struct {
+    char titular[100];
+    int cpf;
+    float saldo;
+} ContaBancaria;
+
+// Função para Alocação Dinâmica (Questão 4)
+ContaBancaria* criar_conta(char nome[], int cpf, float valor_inicial) {
+    ContaBancaria *nova_conta = (ContaBancaria*) malloc(sizeof(ContaBancaria));
+    
+    if (nova_conta != NULL) {
+        strcpy(nova_conta->titular, nome);
+        nova_conta->cpf = cpf;
+        nova_conta->saldo = valor_inicial;
+    }
+    return nova_conta;
+}
+
+// Operações do TAD (Questão 3)
+void realizar_deposito(ContaBancaria *c, float valor) {
+    if (valor > 0) {
+        c->saldo += valor;
+    }
+}
+
+void realizar_saque(ContaBancaria *c, float valor) {
+    if (valor > 0 && c->saldo >= valor) {
+        c->saldo -= valor;
+        printf("Saque de R$ %.2f realizado com sucesso.\n", valor);
+    } else {
+        printf("Saldo insuficiente ou valor invalido.\n");
+    }
+}
+
+void exibir_extrato(ContaBancaria *c) {
+    printf("\n--- EXTRATO BANCARIO ---");
+    printf("\nTitular: %s", c->titular);
+    printf("\nCPF: %d", c->cpf);
+    printf("\nSaldo Atual: R$ %.2f\n", c->saldo);
+}
+
+int main() {
+    // Criando conta dinamicamente
+    ContaBancaria *minha_conta = criar_conta("Pedro Alvares Cabral", 123456789, 1000.0);
+
+    if (minha_conta != NULL) {
+        realizar_saque(minha_conta, 300.0);
+        realizar_deposito(minha_conta, 200.0);
+        exibir_extrato(minha_conta);
+
+        // Importante: liberar a memoria alocada
+        free(minha_conta);
+    }
+
+    return 0;
+}
+
