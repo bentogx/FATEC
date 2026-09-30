@@ -1,0 +1,63 @@
+<section class="cabecalho-pagina">
+  <h2>Meu Carrinho 🛒</h2>
+  <p>Confira seus itens antes de finalizar a compra.</p>
+</section>
+
+@if (compraFinalizada()) {
+  <section class="estado-vazio">
+    <p class="sucesso">Compra finalizada com sucesso! Obrigada por escolher a Cherry Dolls 💗</p>
+    <a class="botao" routerLink="/produtos" (click)="compraFinalizada.set(false)">Continuar comprando</a>
+  </section>
+} @else if (carrinho.itens().length === 0) {
+  <section class="estado-vazio">
+    <p>Seu carrinho está vazio.</p>
+    <a class="botao" routerLink="/produtos">Ver produtos</a>
+  </section>
+} @else {
+  <section class="conteudo-carrinho">
+    <ul class="lista-itens">
+      @for (item of carrinho.itens(); track item.produto.id) {
+        <li class="item">
+          @if (item.produto.imagens.length > 0) {
+            <img class="item-imagem" [src]="item.produto.imagens[0].src" [alt]="item.produto.nome" />
+          } @else {
+            <div class="item-sem-foto" aria-hidden="true">Foto em breve</div>
+          }
+
+          <div class="item-info">
+            <h3>{{ item.produto.nome }}</h3>
+            <p class="item-unitario">{{ item.produto.preco | currency: 'BRL' }} cada</p>
+          </div>
+
+          <div class="quantidade" role="group" [attr.aria-label]="'Quantidade de ' + item.produto.nome">
+            <button type="button" (click)="carrinho.diminuir(item.produto.id)" aria-label="Diminuir quantidade">−</button>
+            <span>{{ item.quantidade }}</span>
+            <button type="button" (click)="carrinho.aumentar(item.produto.id, item.produto.estoque)"
+              [disabled]="item.produto.estoque !== undefined && item.quantidade >= item.produto.estoque"
+              aria-label="Aumentar quantidade">+</button>
+          </div>
+
+          <p class="item-subtotal">{{ item.produto.preco * item.quantidade | currency: 'BRL' }}</p>
+
+          <button type="button" class="remover" (click)="carrinho.remover(item.produto.id)">
+            Remover
+          </button>
+        </li>
+      }
+    </ul>
+
+    <aside class="resumo">
+      <h3>Resumo do pedido</h3>
+      <p class="linha">
+        <span>Itens</span>
+        <span>{{ carrinho.quantidadeTotal() }}</span>
+      </p>
+      <p class="linha total">
+        <span>Total</span>
+        <span>{{ carrinho.total() | currency: 'BRL' }}</span>
+      </p>
+      <button type="button" class="botao" (click)="finalizar()">Finalizar compra</button>
+      <button type="button" class="limpar" (click)="carrinho.limpar()">Esvaziar carrinho</button>
+    </aside>
+  </section>
+}

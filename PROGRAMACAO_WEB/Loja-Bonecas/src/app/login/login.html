@@ -1,0 +1,19 @@
+<section class="cabecalho-pagina">
+  <h2>Entre na sua conta</h2>
+  <p>Acesse sua área de cliente.</p>
+</section>
+
+<section class="area-conta">
+  <form class="formulario-conta" (ngSubmit)="entrar()" #form="ngForm">
+    <label for="email-login">E-mail</label>
+    <input id="email-login" name="email" type="email" autocomplete="email" [(ngModel)]="email" required email />
+
+    <label for="senha-login">Senha</label>
+    <input id="senha-login" name="senha" type="password" autocomplete="current-password" [(ngModel)]="senha" required />
+
+    <button type="submit" class="botao" [disabled]="form.invalid">Entrar</button>
+    @if (enviado()) {
+      <p class="aviso-formulario" role="status">A tela está pronta, mas a autenticação ainda precisa ser conectada ao sistema da loja.</p>
+    }
+  </form>
+</section>

@@ -1,0 +1,27 @@
+<section class="cabecalho-pagina">
+  <h2>Crie sua conta</h2>
+  <p>Cadastre-se para acompanhar as novidades da Matharazzo Dolls.</p>
+</section>
+
+<section class="area-conta">
+  <form class="formulario-conta" (ngSubmit)="cadastrar()" #form="ngForm">
+    <label for="nome-cadastro">Nome completo</label>
+    <input id="nome-cadastro" name="nome" type="text" autocomplete="name" [(ngModel)]="nome" required />
+
+    <label for="email-cadastro">E-mail</label>
+    <input id="email-cadastro" name="email" type="email" autocomplete="email" [(ngModel)]="email" required email />
+
+    <label for="nascimento-cadastro">Data de nascimento</label>
+    <input id="nascimento-cadastro" name="dataNascimento" type="date" autocomplete="bday"
+      [max]="dataMaxima" [(ngModel)]="dataNascimento" required />
+
+    <label for="senha-cadastro">Senha</label>
+    <input id="senha-cadastro" name="senha" type="password" autocomplete="new-password" minlength="8" [(ngModel)]="senha" required />
+    <small>Use pelo menos 8 caracteres.</small>
+
+    <button type="submit" class="botao" [disabled]="form.invalid">Criar cadastro</button>
+    @if (enviado()) {
+      <p class="aviso-formulario" role="status">Formulário preenchido. O cadastro de contas ainda precisa ser conectado ao sistema da loja.</p>
+    }
+  </form>
+</section>

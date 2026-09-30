@@ -1,0 +1,40 @@
+.cabecalho-pagina {
+  padding-left: 32px;
+}
+.area-conta {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.formulario-conta {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  background: var(--cor-superficie);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.formulario-conta label {
+  margin: 0.8rem 0 0.3rem;
+  color: var(--cor-titulo);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.formulario-conta input {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9c9cf;
+  border-radius: 0.5rem;
+  font: inherit;
+}
+
+.formulario-conta input:focus {
+  outline: 2px solid var(--cor-destaque);
+  border-color: transparent;
+}
+
+.formulario-conta small { margin-top: 0.3rem; color: var(--cor-texto-suave); }
+.formulario-conta button { margin-top: 1.25rem; }
+.aviso-formulario { margin: 1rem 0 0; color: var(--cor-titulo); font-size: 0.9rem; }

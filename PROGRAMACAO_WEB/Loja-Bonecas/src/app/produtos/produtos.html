@@ -1,0 +1,95 @@
+<section class="cabecalho-pagina">
+  <h2>Nossos Produtos</h2>
+  <p>Confira as nossas bonecas disponíveis.</p>
+</section>
+
+<section class="grade-produtos">
+  @for (produto of produtosFiltrados(); track produto.id) {
+    <article class="card-produto">
+      <div class="produto-clicavel" role="button" tabindex="0" (click)="abrirDetalhes(produto)"
+        (keydown.enter)="abrirDetalhes(produto)" (keydown.space)="$event.preventDefault(); abrirDetalhes(produto)"
+        [attr.aria-label]="'Ver detalhes de ' + produto.nome">
+        @if (produto.imagens.length > 0) {
+          <div class="resumo-produto">
+            <img [src]="produto.imagens[0].src" [alt]="produto.nome" />
+          </div>
+        } @else {
+          <div class="resumo-produto sem-foto" role="img" [attr.aria-label]="'Foto de ' + produto.nome + ' ainda não cadastrada'">
+            <span>Foto em breve</span>
+          </div>
+        }
+        <h3>{{ produto.nome }}</h3>
+        <p class="descricao">{{ produto.descricao }}</p>
+        <p class="preco">{{ produto.preco | currency: 'BRL' }}</p>
+        @if (produto.estoque !== undefined) {
+          <p class="estoque">Disponíveis: {{ estoqueRestante(produto) }}</p>
+        }
+      </div>
+      <button type="button" class="botao botao-detalhes" (click)="abrirDetalhes(produto)">
+        Ver mais detalhes
+      </button>
+      <button type="button" class="botao botao-secundario" [disabled]="!podeAdicionar(produto)" (click)="adicionar(produto)">
+        {{ adicionadoId() === produto.id ? 'Adicionado ✓' : 'Adicionar ao carrinho' }}
+      </button>
+      @if (avisoEstoqueId() === produto.id) {
+        <p class="aviso-estoque" role="status">O limite de estoque deste produto foi atingido.</p>
+      }
+    </article>
+  }
+  @empty {
+    <p class="sem-resultados">Não encontramos produtos para essa busca.</p>
+  }
+</section>
+
+@if (produtoDetalhado(); as produto) {
+  <div class="fundo-modal" (click)="fecharDetalhes()" (keydown.escape)="fecharDetalhes()" tabindex="-1">
+    <section class="modal-detalhes" role="dialog" aria-modal="true" [attr.aria-label]="'Detalhes de ' + produto.nome"
+      (click)="$event.stopPropagation()">
+      <button type="button" class="fechar-modal" aria-label="Fechar detalhes" (click)="fecharDetalhes()">×</button>
+      <div class="galeria-produto" [class.uma-foto]="produto.imagens.length === 1">
+        @if (produto.imagens.length > 0) {
+          @if (produto.imagens.length > 1) {
+            <div class="miniaturas" aria-label="Fotos do produto">
+              @for (img of produto.imagens; track $index) {
+                <button type="button" class="miniatura" [class.ativa]="indiceFoto(produto) === $index"
+                  [attr.aria-label]="'Ver foto ' + ($index + 1) + ' de ' + produto.nome"
+                  [attr.aria-pressed]="indiceFoto(produto) === $index" (click)="selecionarFoto(produto, $index)">
+                  <img [src]="img.src" [alt]="produto.nome + ' — foto ' + ($index + 1)" />
+                </button>
+              }
+            </div>
+          }
+          <div class="container-imagem">
+            <img [src]="fotoAtual(produto)?.src" [alt]="produto.nome" class="foto-destaque" />
+            @if (produto.imagens.length > 1) {
+              <span class="contador-fotos">{{ indiceFoto(produto) + 1 }}/{{ produto.imagens.length }}</span>
+              <button type="button" class="seta-galeria anterior" aria-label="Foto anterior" (click)="navegarFotos(produto, -1)">‹</button>
+              <button type="button" class="seta-galeria proxima" aria-label="Próxima foto" (click)="navegarFotos(produto, 1)">›</button>
+            }
+          </div>
+        } @else {
+          <div class="container-imagem imagem-indisponivel" role="img" [attr.aria-label]="'Foto de ' + produto.nome + ' ainda não cadastrada'">
+            <small>Foto ainda não cadastrada</small>
+          </div>
+        }
+      </div>
+      <div class="informacoes-detalhe">
+        <h2>{{ produto.nome }}</h2>
+        <p class="descricao">{{ produto.descricao }}</p>
+        @if (fotoAtual(produto)?.referencia) {
+          <p class="legenda-foto">Imagem de referência</p>
+        }
+        <p class="preco">{{ produto.preco | currency: 'BRL' }}</p>
+        @if (produto.estoque !== undefined) {
+          <p class="estoque">Disponíveis: {{ estoqueRestante(produto) }}</p>
+        }
+        <button type="button" class="botao botao-secundario" [disabled]="!podeAdicionar(produto)" (click)="adicionar(produto)">
+          {{ adicionadoId() === produto.id ? 'Adicionado ✓' : 'Adicionar ao carrinho' }}
+        </button>
+        @if (avisoEstoqueId() === produto.id) {
+          <p class="aviso-estoque" role="status">O limite de estoque deste produto foi atingido.</p>
+        }
+      </div>
+    </section>
+  </div>
+}

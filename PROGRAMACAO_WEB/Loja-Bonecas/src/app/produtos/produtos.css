@@ -1,0 +1,326 @@
+.cabecalho-pagina {
+  text-align: center;
+  padding: 2rem 1.5rem 1rem;
+}
+
+.cabecalho-pagina h2 {
+  color: var(--cor-titulo);
+  margin-bottom: 0.4rem;
+}
+
+.cabecalho-pagina p {
+  color: var(--cor-texto-suave);
+}
+
+.grade-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 1.5rem 3rem;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.card-produto {
+  background: var(--cor-superficie);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease;
+  text-align: center;
+}
+
+.card-produto:hover {
+  transform: translateY(-4px);
+}
+
+.resumo-produto {
+  display: grid;
+  height: 200px;
+  margin-bottom: 0.85rem;
+  place-items: center;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+.produto-clicavel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.produto-clicavel:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+.resumo-produto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.resumo-produto.sem-foto {
+  background: #f8edf1;
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+}
+
+.botao-detalhes {
+  width: 100%;
+  margin-bottom: 0.55rem;
+  border: 1px solid var(--cor-primaria);
+  background: #fff;
+  color: var(--cor-titulo);
+}
+
+.galeria-produto {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: stretch;
+  margin-bottom: 1rem;
+}
+
+.galeria-produto.uma-foto {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.legenda-foto {
+  margin: -0.25rem 0 0.9rem;
+  padding: 0.55rem 0.7rem;
+  border-left: 3px solid var(--cor-destaque);
+  border-radius: 0.35rem;
+  background: #fff0f4;
+  color: var(--cor-texto-suave);
+  font-size: 0.8rem;
+}
+
+/* Imagem principal e navegação da galeria */
+.container-imagem {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 245px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+.foto-destaque {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.miniaturas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  max-height: 245px;
+}
+
+.miniatura {
+  flex: 0 0 3.25rem;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e8e1de;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  opacity: 0.72;
+}
+
+.miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.miniatura:hover,
+.miniatura.ativa {
+  opacity: 1;
+}
+
+.miniatura.ativa {
+  border: 2px solid var(--cor-destaque);
+}
+
+.contador-fotos {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--cor-titulo);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.seta-galeria {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--cor-destaque);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.seta-galeria.anterior { left: 0.5rem; }
+.seta-galeria.proxima { right: 0.5rem; }
+
+.imagem-indisponivel {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: var(--cor-texto-suave);
+}
+
+.imagem-indisponivel small {
+  font-size: 0.8rem;
+}
+
+.card-produto h3 {
+  color: var(--cor-titulo);
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 480px) {
+  .grade-produtos { padding-inline: 1rem; }
+  .card-produto { padding: 1rem; }
+  .container-imagem { height: 220px; }
+  .miniaturas { max-height: 220px; }
+}
+
+.descricao {
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  flex-grow: 1;
+  margin-bottom: 0.75rem;
+}
+
+.preco {
+  font-weight: 700;
+  color: var(--cor-destaque);
+  font-size: 1.15rem;
+  margin-bottom: 0.9rem;
+}
+
+.estoque {
+  margin: -0.45rem 0 0.85rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.aviso-estoque {
+  margin: 0.6rem 0 0;
+  color: #a33a54;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.botao-secundario {
+  width: 100%;
+}
+
+.sem-resultados {
+  grid-column: 1 / -1;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+.fundo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  overflow-y: auto;
+  background: rgba(43, 29, 36, 0.62);
+}
+
+.modal-detalhes {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+  gap: 1.5rem;
+  width: min(100%, 820px);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: var(--cor-superficie);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.2);
+}
+
+.modal-detalhes .container-imagem,
+.modal-detalhes .miniaturas { height: 370px; max-height: 370px; }
+
+.fechar-modal {
+  position: absolute;
+  z-index: 1;
+  top: 0.55rem;
+  right: 0.65rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--cor-titulo);
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.informacoes-detalhe {
+  align-self: center;
+  padding: 1rem 0;
+}
+
+.informacoes-detalhe h2 {
+  margin: 0 0 0.75rem;
+  color: var(--cor-titulo);
+  font-size: 1.4rem;
+}
+
+@media (max-width: 620px) {
+  .modal-detalhes { grid-template-columns: 1fr; gap: 0.75rem; padding: 1rem; }
+  .modal-detalhes .container-imagem,
+  .modal-detalhes .miniaturas { height: 260px; max-height: 260px; }
+  .informacoes-detalhe { padding: 0; }
+}
