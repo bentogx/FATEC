@@ -1,0 +1,10 @@
+{
+  "nome": "Boneca Barbie Sweetie",
+  "descricao": "Boneca completa com acessórios.",
+  "preco": 189.90,
+  "estoque": 2,
+  "imagens": [
+    { "src": "/produtos/Barbie-Sweetie.jpeg", "referencia": false },
+    { "src": "/produtos/Ref-Barbie-Sweetie.jpg", "referencia": true }
+  ]
+}
